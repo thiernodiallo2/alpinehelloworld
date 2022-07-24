@@ -22,18 +22,7 @@ pipeline {
                 script {
                     sh '''
                         docker run -d -p 80:5000 -e PORT=5000 --name ${IMAGE_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
-                        sleep 10
-                    '''
-                }
-            }
-        }
-
-        stage('Test image') {
-            agent any
-            steps {
-                script {
-                    sh '''
-                        curl http://172.18.0.1 | grep -q "Hello world "
+                        sleep 5
                     '''
                 }
             }
