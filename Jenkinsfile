@@ -28,6 +28,17 @@ pipeline {
             }
         }
 
+        stage('Test image') {
+            agent any
+            steps {
+                script {
+                    sh '''
+                        curl http://172.18.0.1/ | grep -q "Hello world!"
+                    '''
+                }
+            }
+        }
+
         stage('Clean Container') {
             agent any
             steps {
