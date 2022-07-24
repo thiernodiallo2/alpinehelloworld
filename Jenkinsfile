@@ -91,4 +91,13 @@ pipeline {
             }
         }
     }
+    
+    post {
+            success {
+                slackSend (color: '#00FF00', message: "Successfully: Job - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (<${env.BUILD_URL}|Open>)")
+            }
+            failure {
+                slackSend (color: '#FF0000',  message:"Failed: Job  - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (<${env.BUILD_URL}|Open>)")
+            }
+        }
 }
